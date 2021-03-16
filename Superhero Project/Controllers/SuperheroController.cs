@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Superhero_Project.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +10,31 @@ namespace Superhero_Project.Controllers
 {
     public class SuperheroController : Controller
     {
-        // GET: SuperheroController
+        private ApplicationDbContext _context; //represents _context anywhere 
+
+        public SuperheroController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        // GET: Superhero
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: SuperheroController/Details/5
+        // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: SuperheroController/Create
+        // GET: Superhero/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: SuperheroController/Create
+        // POST: Superhero/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -42,13 +49,13 @@ namespace Superhero_Project.Controllers
             }
         }
 
-        // GET: SuperheroController/Edit/5
+        // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: SuperheroController/Edit/5
+        // POST: Superhero/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -63,13 +70,13 @@ namespace Superhero_Project.Controllers
             }
         }
 
-        // GET: SuperheroController/Delete/5
+        // GET: Superhero/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: SuperheroController/Delete/5
+        // POST: Superhero/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
