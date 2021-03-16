@@ -9,7 +9,7 @@ namespace Superhero_Project.Models
     public class Superhero
     {
         [Key]
-        public int ID
+        public int Id
         {
             get; set;
         }
