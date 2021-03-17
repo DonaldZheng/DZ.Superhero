@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Superhero_Project.Data;
+using Superhero_Project.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Superhero_Project.Controllers
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
+            var details = _context.Superheroes.Find(id);
             return View();
         }
 
@@ -37,31 +39,38 @@ namespace Superhero_Project.Controllers
         // POST: Superhero/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Superhero superhero)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _context.Superheroes.Add(superhero);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+
             }
             catch
             {
-                return View();
+                Console.WriteLine("Something went wrong!");
+                return RedirectToAction("Index", "Home");
             }
         }
 
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var editSuperhero = _context.Superheroes.Find(id);
+            return View(editSuperhero);
         }
 
         // POST: Superhero/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
             {
+                _context.Superheroes.Update(superhero);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
