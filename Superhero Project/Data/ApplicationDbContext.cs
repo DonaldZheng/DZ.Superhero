@@ -19,5 +19,10 @@ namespace Superhero_Project.Data
         {
             get; set;
         }
+        public object Superhero
+        {
+            get;
+            internal set;
+        }
     }
 }

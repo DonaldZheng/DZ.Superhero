@@ -28,7 +28,7 @@ namespace Superhero_Project.Controllers
         public ActionResult Details(int id)
         {
             var details = _context.Superheroes.Find(id);
-            return View();
+            return View(details);
         }
 
         // GET: Superhero/Create
@@ -85,7 +85,7 @@ namespace Superhero_Project.Controllers
         public ActionResult Delete(int id)
         {
             var deleteSuperhero =_context.Superheroes.Find(id);
-            return View();
+            return View(deleteSuperhero);
         }
 
         // POST: Superhero/Delete/5
@@ -96,6 +96,7 @@ namespace Superhero_Project.Controllers
             try
             {
                 _context.Superheroes.Remove(superhero);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
