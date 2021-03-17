@@ -20,7 +20,8 @@ namespace Superhero_Project.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
-            return View();
+            var returnList = _context.Superheroes.ToList();
+            return View(returnList);
         }
 
         // GET: Superhero/Details/5
