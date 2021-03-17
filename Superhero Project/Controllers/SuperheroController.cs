@@ -50,7 +50,7 @@ namespace Superhero_Project.Controllers
             }
             catch
             {
-                Console.WriteLine("Something went wrong!");
+                Console.WriteLine("Error!");
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -75,6 +75,7 @@ namespace Superhero_Project.Controllers
             }
             catch
             {
+                Console.WriteLine("Error!");
                 return View();
             }
         }
@@ -82,20 +83,23 @@ namespace Superhero_Project.Controllers
         // GET: Superhero/Delete/5
         public ActionResult Delete(int id)
         {
+            var deleteSuperhero =_context.Superheroes.Find(id);
             return View();
         }
 
         // POST: Superhero/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Superhero superhero)
         {
             try
             {
+                _context.Superheroes.Remove(superhero);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                Console.WriteLine("Error!");
                 return View();
             }
         }
